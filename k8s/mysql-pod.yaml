@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+  labels:
+    app: mysql
+spec:
+  containers:
+    - name: mysql
+      image: mysql:8
+      env:
+        - name: MYSQL_DATABASE
+          value: 'petcommerce'
+        - name: MYSQL_USER
+          value: 'petcommerce'
+        - name: MYSQL_PASSWORD
+          value: 'petcommerce'
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'petcommerce'
+      ports:
+        - name: dbport
+          containerPort: 3306
+          protocol: TCP
