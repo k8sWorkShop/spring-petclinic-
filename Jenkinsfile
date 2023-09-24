@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('vcs') {
             steps {
-                git url 'https://github.com/WorkshopsByKhaja/petclinic.git', branch: 'develop'
+                git url: 'https://github.com/WorkshopsByKhaja/petclinic.git', branch: 'develop'
             }
         }
         stage ('build docker image') {
@@ -18,7 +18,7 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'kubectl apply -f '
+                sh 'kubectl apply -f k8s/'
             }
         }
     }
