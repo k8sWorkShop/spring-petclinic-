@@ -30,16 +30,4 @@ spec:
           requests: 
             memory: "256Mi"
             cpu: "250m"
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 3
-          periodSeconds: 3
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 3
-          periodSeconds: 3
         
