@@ -17,10 +17,12 @@ spec:
         # the Deployment label selector to this value
         app: petclinic
     spec:
+      imagePullSecrets:
+        name: regcred
       containers:
       - name: petclinic
         # Run this image
-        image: shaikkhajaibrahim/workshop-petclinic
+        image: qt1234.jfrog.io/workshop-docker-local/petclinic:latest
         ports:
           - containerPort: 8080
         resources:
