@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   name: petclinic-ingress
   annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+   # nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - http:
       paths:
-      - path: /clinic(/|$)(.*)
-        pathType: Prefix
+      - path: /clinic  #(/|$)(.*)
+        pathType:  Exact #Prefix
         backend:
           service:
             name: petclinic-svc
