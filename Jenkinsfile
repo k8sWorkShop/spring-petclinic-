@@ -1,22 +1,28 @@
 pipeline {
-    agent any
-    triggers {
-        pollSCM('* * * * *')
+    agent  {label 'k8s-workshop'}
+    // triggers {
+    //     pollSCM('* * * * *')
     }
     stages {
-        stage ('vcs') {
+        stage ('git checkout') {
             steps {
-                git url: 'https://github.com/WorkshopsByKhaja/petclinic.git', branch: 'develop'
+                git url: 'https://github.com/k8sWorkShop/spring-petclinic-.git', branch: 'develop'
             }
         }
         stage ('build docker image') {
             steps {
-                sh 'docker image build -t qt1234.jfrog.io/workshop-docker-local/petclinic:latest .'
+                sh 'docker image build -t practices.jfrog.io/ajay-docker-local/petclinic:v1.0 .'
+                
             }
         }
-        stage ('send to artifactory and scan') {
+        stage ('docker tag/rename image'){
+            steps{
+                sh 'docker tag petclinic:latest practices.jfrog.io/ajay-docker-local/petclinic:v1.0 '
+            }
+        }
+        stage ('push image to jfrog artifactory and scan image') {
             steps {
-                sh 'docker image push qt1234.jfrog.io/workshop-docker-local/petclinic:latest'
+                sh 'docker image push practices.jfrog.io/ajay-docker-local/petclinic:v1.0'
             }
         }
         stage ('deploy') {
