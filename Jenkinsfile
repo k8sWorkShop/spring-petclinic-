@@ -28,7 +28,8 @@ pipeline {
         }
         stage ('deploy') {
             steps {
-                sh 'kubectl apply -f k8s/'
+                // sh 'kubectl apply -f k8s/'
+                sh 'kubectl delete -f k8s/' 
             }
         }
     }
