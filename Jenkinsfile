@@ -3,7 +3,7 @@ pipeline {
     //  triggers {
     //      pollSCM('* * * * *')
     // }
-    
+
     stages {
         stage ('git checkout') {
             steps {
@@ -12,7 +12,7 @@ pipeline {
         }
         stage ('build docker image') {
             steps {
-                sh 'docker image build -t practices.jfrog.io/ajay-docker-local/petclinic:v1.0 .'
+                sh 'docker image build -t petclinic:latest .'
                 
             }
         }
