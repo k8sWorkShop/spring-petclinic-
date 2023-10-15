@@ -1,8 +1,9 @@
 pipeline {
-    agent  {label 'k8s-workshop'}
+    agent  {label 'k8s-workshop'}{
     //  triggers {
     //      pollSCM('* * * * *')
     // }
+    }
     stages {
         stage ('git checkout') {
             steps {
@@ -31,3 +32,4 @@ pipeline {
             }
         }
     }
+}
